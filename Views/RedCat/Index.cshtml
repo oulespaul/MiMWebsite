@@ -1,0 +1,29 @@
+﻿<h1>@ViewData["Title"]</h1>
+@model IEnumerable<MiMWebsite.Models.RedCatModel>
+@{
+	ViewData["Title"] = "RedCat index";
+}
+<h1>@ViewData["Title"]</h1>
+<table class="table">
+	<tr>
+		<th>รหัสภาพยนต์</th>
+		<th>ชื่อภาพยนต์</th>
+		<th>รูป</th>
+		<th>เข้าฉายเมื่อ</th>
+		<th>หมวดหมู่</th>
+		<th>ความยาว (นาที)</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.id</td>
+			<td>@item.title</td>
+			<td>
+				<img src="@item.coverImg" height="80px" />
+			</td>
+			<td>@item.releaseDate</td>
+			<td>@item.genre</td>
+			<td>@item.duration</td>
+		</tr>
+	}
+</table>
