@@ -61,3 +61,7 @@ C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcore
 C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\MiMWebsite.pdb
 C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\MiMWebsite.csproj.CopyComplete
 C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\Razor\Views\RedCat\Index.cshtml.g.cs
+C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\MiMWebsite.csprojAssemblyReference.cache
+C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Item\index.cshtml.g.cs
+C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Transaction\Index.cshtml.g.cs
+C:\Users\ter12\OneDrive\เดสก์ท็อป\MiMWebsite\obj\Debug\netcoreapp2.2\Razor\Views\RedCat\Create.cshtml.g.cs

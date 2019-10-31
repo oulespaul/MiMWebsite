@@ -9,22 +9,18 @@ using MiMWebsite.Models;
 
 namespace MiMWebsite.Controllers
 {
-	public class RedCatController : Controller
+	public class ItemController : Controller
 	{
 		// GET: /<controller>/
 		public IActionResult Index()
 		{
 			var db = new MyProjectContext();
-			var RedCat = db.User.ToList();
-			return View(RedCat);
+			var Item = db.Item.ToList();
+			return View(Item);
 		}
 		public string Welcome(string name, string id)
 		{
 			return $"hello {name} ,your id {id}";
-		}
-		public IActionResult Create()
-		{
-			return View();
 		}
 	}
 }

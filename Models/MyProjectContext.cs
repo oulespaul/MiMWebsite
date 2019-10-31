@@ -13,9 +13,12 @@ namespace MiMWebsite.Models
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlite("Data source=database/DB.db");
+			optionsBuilder.UseSqlite("Data source=database/MimDB.db");
 		}
 
-		public DbSet<RedCatModel> RedCat { get; set; }
+		public DbSet<UserModel> User { get; set; }
+		public DbSet<ItemModel> Item { get; set; }
+		public DbSet<TransactionModel> Transaction { get; set; }
+
 	}
 }
