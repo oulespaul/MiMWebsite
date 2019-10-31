@@ -1,33 +1,47 @@
 <template>
-      <v-card color="#26347a">
-        <v-card-title>
-          <span class="headline">User Login</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field label="Username*" color= required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Password*" type="password" required></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <div class="flex-grow-1"></div>
-          <v-btn color="#E1F5FE" text @click="dialog = false">Login</v-btn>
-        </v-card-actions>
-      </v-card>
+  <v-card color="#66fcf1" light>
+    <v-card-title>
+      <v-layout>
+        <v-flex xs4 md4>
+          <v-img :src="logo" width="100" height="100"></v-img>
+          <div class="headline">User Register</div>
+        </v-flex>
+      </v-layout>
+    </v-card-title>
+    <v-card-text>
+      <v-container>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field label="Tel*" color="required"></v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <v-text-field label="Password*" type="password" required></v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <v-text-field label="A/C No.*" type="password" required></v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <v-text-field label="A/C Name*" type="password" required></v-text-field>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card-text>
+    <v-card-actions>
+      <div class="flex-grow-1"></div>
+      <v-btn color="#0b0c10" outlined text @click="dialog = false">Register</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
-
 export default {
-}
+  data() {
+    return {
+      logo: require("@/assets/images/mimlogo.png")
+    };
+  }
+};
 </script>
 
 <style>
-
 </style>

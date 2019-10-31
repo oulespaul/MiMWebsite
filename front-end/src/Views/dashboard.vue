@@ -8,7 +8,7 @@
         <v-card-subtitle>
           <div class="subtitle-1 ml-5">Shop Name:</div>
           <div class="subtitle-1 ml-5">Balance:</div>
-              <v-divider color="red darken-4" class="mx-5"></v-divider>
+          <v-divider color="red darken-4" class="mx-5"></v-divider>
           <div class="subtitle-1 ml-5">A/C Number: 840-6-28733-9</div>
           <div class="subtitle-1 ml-5">A/C Name: Thanakrit Chaukajung</div>
           <div class="subtitle-1 ml-5">Email: oulespaul@gmail.com</div>
@@ -18,6 +18,7 @@
         <v-card-title>
           <div class="title grey--text text--darken-4">Top-up</div>
         </v-card-title>
+        <v-divider class="mx-5"></v-divider>
         <v-card-text>
           <v-layout text-md-center>
             <v-flex>
@@ -51,7 +52,16 @@
           </v-layout>
         </v-card-text>
       </v-card>
-      <v-card color="white" class="mt-5" raised>test</v-card>
+      <v-card color="blue" class="mt-5" raised>
+        <v-card-title>
+          <div class="title grey--text text--darken-4">Quick MIM</div>
+        </v-card-title>
+        <v-card-text>
+          <v-divider class="mx-5"></v-divider>
+          <br />
+          <v-text-field color="#0b0c10" light solo rounded prepend-inner-icon="mdi-sigma mdi-spin"></v-text-field>
+        </v-card-text>
+      </v-card>
     </v-flex>
     <v-flex xs6 md6 class="pa-1">
       <v-card color="#1f2833" class="white--text" raised>
@@ -93,4 +103,7 @@ export default {
 </script>
 
 <style>
+.theme--dark.v-text-field--solo > .v-input__control > .v-input__slot {
+  background: #c5c6c7;
+}
 </style>

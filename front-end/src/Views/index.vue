@@ -23,7 +23,7 @@
         </v-flex>
       </v-layout>
     </v-layout>
-    <v-dialog v-model="loginModal">
+    <v-dialog v-model="loginModal" width="500">
       <login-component></login-component>
     </v-dialog>
     <v-dialog v-model="registerModal" width="500">
