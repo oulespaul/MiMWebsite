@@ -11,7 +11,9 @@ namespace MiMWebsite.Controllers
 {
 	public class ItemController : Controller
 	{
+		MyProjectContext db = new MyProjectContext();
 		// GET: /<controller>/
+		[HttpGet]
 		public IActionResult Index()
 		{
 			var db = new MyProjectContext();
@@ -22,5 +24,29 @@ namespace MiMWebsite.Controllers
 		{
 			return $"hello {name} ,your id {id}";
 		}
+
+	
+		 
+		
+		[HttpPost("ItemCreate")]
+		public async Task<IActionResult> Create([FromBody]ItemModel model)
+		{
+
+			db.Item.Add(model);
+			await db.SaveChangesAsync();
+			return Ok(new
+			{
+				message = "Insert success"
+			});
+		}
 	}
 }
+
+
+
+
+
+
+
+
+ 
