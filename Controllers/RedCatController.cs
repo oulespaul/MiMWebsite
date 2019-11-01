@@ -34,6 +34,7 @@ namespace MiMWebsite.Controllers
 			return View();
 		}
 		[HttpPost("create")]
+<<<<<<< HEAD
 		public async Task<IActionResult> Create([FromBody]UserModel model)
 		{
 		
@@ -43,6 +44,30 @@ namespace MiMWebsite.Controllers
 				{
 					message = "Insert success"
 				});
+=======
+		public async Task<IActionResult> Create(UserModel model, IFormFile fileUpload)
+		{
+			string pathImgUser = "/image/user/";
+			string pathSave = $"wwwroot{pathImgUser}";
+			if (!Directory.Exists(pathSave))
+			{
+				Directory.CreateDirectory(pathSave);
+			}
+			if (fileUpload != null)
+			{
+				string extFile = Path.GetExtension(fileUpload.ContentDisposition);
+
+				var path = Path.Combine(Directory.GetCurrentDirectory());
+
+				using (var stream = new FileStream(path, FileMode.Create))
+				{
+					await fileUpload.CopyToAsync(stream);
+				}
+			}
+				db.User.Add(model);
+				await db.SaveChangesAsync();
+				return RedirectToAction("Index");
+>>>>>>> RedCat
 				
 			
 		}
