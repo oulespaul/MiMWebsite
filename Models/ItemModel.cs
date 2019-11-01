@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MiMWebsite.Models
 {
-	public class RedCatModel
+	public class ItemModel
 	{
+
 		public int id { get; set; }
-		public string title { get; set; }
-		public string coverImg { get; set; }
-		public string releaseDate { get; set; }
-		public string genre { get; set; }
-		public int duration { get; set; }
-		public string createDate { get; set; }
-		public string modifyDate { get; set; }
+		public string ItemName { get; set; }
+		public string ItemPrice { get; set; }
+		public string ItemDetail { get; set; }
+		public string ItemImage { get; set; }
+		
+
 	}
 }

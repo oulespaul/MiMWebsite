@@ -1,5 +1,5 @@
 ﻿<h1>@ViewData["Title"]</h1>
-@model IEnumerable<MiMWebsite.Models.UserModel>
+@model IEnumerable<MiMWebsite.Models.TransactionModel>
 @{
 	ViewData["Title"] = "MiM index";
 }
@@ -15,13 +15,14 @@
 	</tr>
 	@foreach (var item in Model)
 	{
-		<tr>
-			<td>@item.id</td>
-			<td>@item.AcNo</td>
-			<td>@item.AcName</td>
-			<td>@item.Tel</td>
-			<td>@item.Password</td>
-			<td>@item.Balance</td>
-		</tr>
+<tr>
+	<td>@item.id</td>
+	<td>@item.ItemID</td>
+	<td>@item.TrxStatus</td>
+	<td>@item.Seller</td>
+	<td>@item.Buyer</td>
+	<td>@item.AmountTotal</td>
+	<td>@item.Created</td>
+</tr>
 	}
 </table>
