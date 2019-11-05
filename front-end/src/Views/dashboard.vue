@@ -70,7 +70,7 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-            <historytable-component></historytable-component>
+            <historytable-component :items="history"></historytable-component>
           </v-container>
         </v-card-text>
       </v-card>
@@ -81,8 +81,8 @@
           <div class="title grey--text text--darken-4">รายการที่กำลังดำเนินการอยู่</div>
         </v-card-title>
         <v-card-text>
-          <list-component :header="items1"></list-component>
-          <list-component :header="items2"></list-component>
+          <list-component :header="header1" :trx="items1" class="my-5"></list-component>
+          <list-component :header="header2" :trx="items2"></list-component>
         </v-card-text>
       </v-card>
     </v-flex>
@@ -92,57 +92,51 @@
 <script>
 import historytableComponent from "@/components/dashboard/historyTable";
 import listComponent from "@/components/dashboard/list";
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
-      username:'',
-      userDetail:'',
-      items1: [
-      { header: "ที่กำลังขาย" },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Brunch this weekend?",
-        subtitle:
-          "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-      },
-      { divider: true, inset: true },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-        subtitle:
-          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-      }
-    ],
-    items2: [
-      { header: "ที่กำลังซื้อ" },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Brunch this weekend?",
-        subtitle:
-          "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-      },
-      { divider: true, inset: true },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Fuck you <span class="grey--text text--lighten-1">4</span>',
-        subtitle:
-          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-      }
-    ]
+      username: "",
+      userDetail: "",
+      items1: [],
+      items2: [],
+      header1: "ที่กำลังขาย",
+      header2: "ที่กำลังซื้อ",
+      history:[]
     };
   },
   async created() {
-    this.username = await localStorage.getItem('authToken')
-    this.getUserDetail(this.username)
+    this.username = await localStorage.getItem("authToken");
+    this.getUserDetail(this.username);
+    this.getTransactionByUserId(this.username);
   },
   methods: {
-    getUserDetail(userId){
-      axios.get('https://localhost:5001/user/getDetail',{params:{username:userId}}).then((result) => {
-        this.userDetail = result.data
-      }).catch((err) => {
-        console.log(err)
-      });
+    getUserDetail(userId) {
+      axios
+        .get("https://localhost:5001/user/getDetail", {
+          params: { username: userId }
+        })
+        .then(result => {
+          this.userDetail = result.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getTransactionByUserId(userId) {
+      axios
+        .get("https://localhost:5001/transaction/getTransactionByUserId", {
+          params: { userId: userId }
+        })
+        .then(result => {
+          console.log(result.data);
+          this.history = result.data.history;
+          this.items1 = result.data.seller;
+          this.items2 = result.data.buyer;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   components: {

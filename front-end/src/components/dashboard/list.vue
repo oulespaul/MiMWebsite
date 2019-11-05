@@ -1,30 +1,33 @@
 <template>
-  <v-list three-line>
-    <template v-for="(item, index) in header">
-      <v-subheader v-if="item.header" :key="item.header" v-text="item.header"></v-subheader>
-
-      <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider>
-
-      <v-list-item v-else :key="item.title">
-        <v-list-item-avatar>
-          <v-img :src="item.avatar"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title v-html="item.title"></v-list-item-title>
-          <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </template>
-  </v-list>
+  <div>
+    <div class="title grey--text text--darken-4">{{header}}</div>
+    <v-list three-line>
+      <template v-for="(item,index) in trx">
+        <v-list-item :key="item.date" @click="gotoTrxDashboard(item.mimpin)">
+          <v-list-item-avatar tile>
+            <v-img :src="item.photo"></v-img>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title v-html="item.itemName"></v-list-item-title>
+            <v-list-item-subtitle v-html="`วันที่:${item.date}`"></v-list-item-subtitle>
+            <v-list-item-subtitle v-html="`ราคา:${item.price}`"></v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider :key="index" inset></v-divider>
+      </template>
+    </v-list>
+  </div>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    
-  }),
-  props:['header']
+  data: () => ({}),
+  props: ["header", "trx"],
+  methods: {
+    gotoTrxDashboard(pin){
+      this.$router.push({name:'trx',params:{mimpin:pin}})
+    }
+  },
 };
 </script>
 

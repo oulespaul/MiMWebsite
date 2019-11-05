@@ -4,11 +4,11 @@
       <v-card class="ma-5">
         <v-layout row wrap>
           <v-flex xs12 md12>
-            <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover>
+            <v-carousel cycle height="500" hide-delimiter-background show-arrows-on-hover>
               <v-carousel-item v-for="(i, index) in detail" :key="index">
-                <v-sheet height="100%">
+                <v-sheet height="100%" color="#c5c6c7">
                   <v-row class="fill-height" align="center" justify="center">
-                    <v-img :src="i.p.imageText" aspect-ratio="1"></v-img>
+                    <v-img max-width="500" max-height="800" :src="i.p.imageText"></v-img>
                   </v-row>
                 </v-sheet>
               </v-carousel-item>

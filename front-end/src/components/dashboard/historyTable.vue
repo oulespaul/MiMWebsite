@@ -1,19 +1,21 @@
 <template>
-  <v-timeline >
-    <v-timeline-item
-      v-for="n in 3"
-      :key="n"
-      color="#c5c6c7"
-      large
-      dark
-    >
+  <v-timeline>
+    <v-timeline-item v-for="(n,index) in items" :key="index" color="#c5c6c7" large dark>
       <template v-slot:opposite>
-        <span class="white--text text--darken-4">Tus eu perfecto</span>
+        <span class="white--text text--darken-4">{{n.date}}</span>
       </template>
       <v-card class="elevation-2 grey--text text--darken-4" color="#45a29e">
-        <v-card-title class="headline grey--text text--darken-4">Lorem ipsum</v-card-title>
+        <v-card-title class="headline grey--text text--darken-4">
+          <div class="header">{{n.itemName}}</div>
+          <v-spacer></v-spacer>
+          <v-avatar color="indigo" size="50" tile>
+            <v-img :src="n.photo"></v-img>
+          </v-avatar>
+        </v-card-title>
         <v-card-text class="grey--text text--darken-4">
-          Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
+          <v-divider></v-divider>
+          <div class="subtitle-1">MIMPIN: {{n.mimpin}}</div>
+          <div class="subtitle-1">ราคา {{n.price}}</div>
         </v-card-text>
       </v-card>
     </v-timeline-item>
@@ -22,10 +24,12 @@
 
 <script>
 export default {
-
-}
+  data() {
+    return {};
+  },
+  props: ["items"]
+};
 </script>
 
 <style>
-
 </style>

@@ -120,8 +120,10 @@ namespace MiMWebsite.Controllers
                           {
                               ItemName = i.ItemName,
                               Price = i.ItemPrice,
-                              photo = (from it in db.Item join p in db.imageProduct on it.id equals p.productId select p.imageText).FirstOrDefault(),
-                              date = t.Created
+                              photo = (from p in db.imageProduct where p.productId == i.id select p.imageText).FirstOrDefault(),
+                              date = t.Created,
+                              mimpin = t.id,
+                              trxStatus = t.TrxStatus
                           }).ToList();
             var buyer = (from t in db.Transaction
                           join i in db.Item on t.ItemID equals i.id
@@ -130,8 +132,23 @@ namespace MiMWebsite.Controllers
                           {
                               ItemName = i.ItemName,
                               Price = i.ItemPrice,
-                              photo = (from it in db.Item join p in db.imageProduct on it.id equals p.productId select p.imageText).FirstOrDefault(),
-                              date = t.Created
+                              photo = (from p in db.imageProduct where p.productId == i.id select p.imageText).FirstOrDefault(),
+                              date = t.Created,
+                              mimpin = t.id,
+                              trxStatus = t.TrxStatus
+                          }).ToList();
+                          
+            var history = (from t in db.Transaction
+                          join i in db.Item on t.ItemID equals i.id
+                          where t.Buyer == userId || t.Seller == userId && t.TrxStatus == "done"
+                          select new
+                          {
+                              ItemName = i.ItemName,
+                              Price = i.ItemPrice,
+                              photo = (from p in db.imageProduct where p.productId == i.id select p.imageText).FirstOrDefault(),
+                              date = t.Created,
+                              mimpin = t.id,
+                              trxStatus = t.TrxStatus
                           }).ToList();
 
             if(seller.Count == 0 && buyer.Count == 0)
@@ -139,9 +156,11 @@ namespace MiMWebsite.Controllers
 
             return Ok(new {
                 seller = seller,
-                buyer = buyer
+                buyer = buyer,
+                history = history
             });
-
+            
         }
+           
     }
 }
