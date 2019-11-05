@@ -78,10 +78,11 @@
     <v-flex xs3 md3 class="pa-1">
       <v-card color="#c5c6c7" raised>
         <v-card-title>
-          <div class="title grey--text text--darken-4">Transaction processing</div>
+          <div class="title grey--text text--darken-4">รายการที่กำลังดำเนินการอยู่</div>
         </v-card-title>
         <v-card-text>
-          <list-component></list-component>
+          <list-component :header="items1"></list-component>
+          <list-component :header="items2"></list-component>
         </v-card-text>
       </v-card>
     </v-flex>
@@ -96,7 +97,39 @@ export default {
   data() {
     return {
       username:'',
-      userDetail:''
+      userDetail:'',
+      items1: [
+      { header: "ที่กำลังขาย" },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        title: "Brunch this weekend?",
+        subtitle:
+          "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
+      },
+      { divider: true, inset: true },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        subtitle:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      }
+    ],
+    items2: [
+      { header: "ที่กำลังซื้อ" },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        title: "Brunch this weekend?",
+        subtitle:
+          "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
+      },
+      { divider: true, inset: true },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: 'Fuck you <span class="grey--text text--lighten-1">4</span>',
+        subtitle:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      }
+    ]
     };
   },
   async created() {

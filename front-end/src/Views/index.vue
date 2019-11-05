@@ -8,7 +8,7 @@
         </v-row>
       </v-flex>
       <v-flex xs4 md4>
-        <v-text-field label="MiM PIN" outlined width="200"></v-text-field>
+        <v-text-field label="MiM PIN" v-model="pin" @keydown.enter="gotoDashboard" outlined width="200"></v-text-field>
       </v-flex>
       <v-flex md12 xs12></v-flex>
       <v-layout row>
@@ -42,6 +42,7 @@ export default {
       loginModal: false,
       registerModal: false,
       image: require("@/assets/images/mimlogo.png"),
+      pin:''
     };
   },
   components: {
@@ -54,6 +55,9 @@ export default {
     },
     register() {
       this.registerModal = true;
+    },
+    gotoDashboard(){
+      this.$router.push({name:'trx',params:{mimpin:this.pin}})
     }
   },
   
