@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{F23C4EEB-2382-4800-BC65-27215D5B52CA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/RedCatController.cs">
+    <Files>
+      <File FileName="Controllers/RedCatController.cs" Line="94" Column="76" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MiMWebsite" expanded="True">
+            <Node name="MiMWebsite" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True">
+                <Node name="RedCatController.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MiMWebsite PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

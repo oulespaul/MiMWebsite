@@ -19,6 +19,7 @@ namespace MiMWebsite.Models
 		public DbSet<UserModel> User { get; set; }
 		public DbSet<ItemModel> Item { get; set; }
 		public DbSet<TransactionModel> Transaction { get; set; }
+		public DbSet<imageProductModel> imageProduct { get; set;}
 
 	}
 }

@@ -33,8 +33,17 @@ namespace MiMWebsite
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "CorsPolicy",
+                    builder => builder.WithOrigins("http://localhost:8080")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +59,7 @@ namespace MiMWebsite
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

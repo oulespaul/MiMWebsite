@@ -12,27 +12,52 @@
       <v-container>
         <v-row>
           <v-col cols="12">
-            <v-text-field label="Tel*" color="required"></v-text-field>
+            <v-text-field label="Tel*" v-model="tel" color="required"></v-text-field>
           </v-col>
           <v-col cols="12">
-            <v-text-field label="Password*" type="password" required></v-text-field>
+            <v-text-field label="Password*" v-model="password" type="password" required></v-text-field>
           </v-col>
         </v-row>
       </v-container>
     </v-card-text>
     <v-card-actions>
       <div class="flex-grow-1"></div>
-      <v-btn color="#0b0c10" outlined text @click="dialog = false">Login</v-btn>
+      <v-btn color="#0b0c10" outlined text @click="login">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import axios from "axios";
+import swal from "sweetalert2";
 export default {
   data() {
     return {
-      logo: require("@/assets/images/mimlogo.png")
+      logo: require("@/assets/images/mimlogo.png"),
+      tel: "",
+      password: ""
     };
+  },
+  methods: {
+    login() {
+      let data = {
+        Tel: this.tel,
+        Password: this.password
+      };
+      axios
+        .post("https://localhost:5001/user/login", data)
+        .then(result => {
+          localStorage.setItem("authToken", result.data.authToken);
+          swal.fire("Login Success!", "", "success").then(()=>{
+            this.$router.push({path:'/dashboard'})
+          })
+        })
+        .catch(err => {
+          swal.fire("Login failed!", "", "error").then(()=>{
+            this.$router.push({path:'/'})
+          })
+        });
+    }
   }
 };
 </script>

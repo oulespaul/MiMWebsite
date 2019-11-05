@@ -41,7 +41,7 @@ export default {
     return {
       loginModal: false,
       registerModal: false,
-      image: require("@/assets/images/mimlogo.png")
+      image: require("@/assets/images/mimlogo.png"),
     };
   },
   components: {
@@ -55,7 +55,8 @@ export default {
     register() {
       this.registerModal = true;
     }
-  }
+  },
+  
 };
 </script>
 

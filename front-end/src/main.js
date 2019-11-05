@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import index from '@/Views/index.vue';
 import createMim from '@/Views/createMim.vue';
 import dashboard from '@/Views/dashboard.vue';
+import transactionDashboard from '@/Views/transactionDashboard'
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,7 @@ const routes = [
   {path: '/', component: index},
   {path: '/createMim', component: createMim},
   {path: '/dashboard', component: dashboard},
+  {path: '/transaction', name:'trx', component: transactionDashboard, props: true}
 ]
 const router = new VueRouter({
   routes

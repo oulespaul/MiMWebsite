@@ -3,16 +3,16 @@
     <v-flex xs3 md3 class="pa-1" fill-height>
       <v-card color="#45a29e" raised>
         <v-card-title>
-          <div class="title">Username</div>
+          <div class="title">{{username}}</div>
         </v-card-title>
-        <v-card-subtitle>
-          <div class="subtitle-1 ml-5">Shop Name:</div>
-          <div class="subtitle-1 ml-5">Balance:</div>
+        <v-card-text>
+          <!-- <div class="subtitle-1 ml-5">Shop Name:{{userDetail}}</div> -->
+          <div class="subtitle-1 ml-5">Balance: {{userDetail.balance}}</div>
           <v-divider color="red darken-4" class="mx-5"></v-divider>
-          <div class="subtitle-1 ml-5">A/C Number: 840-6-28733-9</div>
-          <div class="subtitle-1 ml-5">A/C Name: Thanakrit Chaukajung</div>
-          <div class="subtitle-1 ml-5">Email: oulespaul@gmail.com</div>
-        </v-card-subtitle>
+          <div class="subtitle-1 ml-5">A/C Number: {{userDetail.acNo}}</div>
+          <div class="subtitle-1 ml-5">A/C Name: {{userDetail.acName}}</div>
+          <!-- <div class="subtitle-1 ml-5">Email: oulespaul@gmail.com</div> -->
+        </v-card-text>
       </v-card>
       <v-card color="#c5c6c7" class="mt-5" raised>
         <v-card-title>
@@ -91,9 +91,26 @@
 <script>
 import historytableComponent from "@/components/dashboard/historyTable";
 import listComponent from "@/components/dashboard/list";
+import axios from 'axios'
 export default {
   data() {
-    return {};
+    return {
+      username:'',
+      userDetail:''
+    };
+  },
+  async created() {
+    this.username = await localStorage.getItem('authToken')
+    this.getUserDetail(this.username)
+  },
+  methods: {
+    getUserDetail(userId){
+      axios.get('https://localhost:5001/user/getDetail',{params:{username:userId}}).then((result) => {
+        this.userDetail = result.data
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
   },
   components: {
     historytableComponent,
