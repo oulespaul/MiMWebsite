@@ -14,9 +14,9 @@ namespace MiMWebsite.Models
 		public int id { get; set; }
 		public int ItemID { get; set; }
 		public string TrxStatus { get; set; }
-		public int Seller { get; set; }
-		public int Buyer { get; set; }
-		public int AmountTotal { get; set; }
+		public string Seller { get; set; }
+		public string Buyer { get; set; }
+		public string AmountTotal { get; set; }
 		public string Created { get; set; }
 
 

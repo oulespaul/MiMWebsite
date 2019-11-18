@@ -34,16 +34,33 @@
       </v-list>
     </v-navigation-drawer>-->
 
-    <v-app-bar app clipped-left color="transparent" elevate-on-scroll>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>MiM</v-toolbar-title>
+    <v-app-bar app clipped-left color="transparent" hide-on-scroll elevate-on-scroll>
+      <v-toolbar-title>
+        <v-btn color="white" x-large text @click="changePage('/')" class="ma-2">MiM</v-btn>
+      </v-toolbar-title>
       <div class="flex-grow-1"></div>
-          <v-btn color="#26347a" @click="changePage('/')" class="ma-2">Index</v-btn>
-          <v-btn color="#26347a" @click="changePage('/createmim')" class="ma-2">CreateMim</v-btn>
-          <v-btn color="#26347a" @click="changePage('/dashboard')" class="ma-2">Dashboard</v-btn>
+      <v-btn
+        color="#66fcf1"
+        @click="changePage('/createmim')"
+        class="ma-2 grey--text text--darken-4"
+      >CreateMim</v-btn>
+      <v-btn
+        color="#66fcf1"
+        @click="changePage('/dashboard')"
+        class="ma-2 grey--text text--darken-4"
+      >Dashboard</v-btn>
+      <v-btn
+        color="yellow"
+        @click="logout"
+        v-show="user != ''"
+        class="ma-2 grey--text text--darken-4"
+      >Logout</v-btn>
     </v-app-bar>
-
-      <router-view></router-view>
+    <v-content>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
@@ -53,21 +70,27 @@ export default {
     source: String
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    user: ""
   }),
   created() {
     this.$vuetify.theme.dark = true;
+    this.user = localStorage.getItem("authToken");
   },
   methods: {
     changePage(page) {
       this.$router.push({ path: page });
+    },
+    logout() {
+      localStorage.setItem("authToken", "");
+      window.location.replace("/");
     }
   }
 };
 </script>
 <style>
 .theme--dark.v-application {
-  background: #26347a;
+  background: #191a1b !important;
   color: #ffffff;
 }
 </style>

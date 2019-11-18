@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,12 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MiMWebsite.Models
 {
-	public class ItemModel
+	public class omiseModel
 	{
-		public int id { get; set; }
-		public string ItemName { get; set; }
-		public string ItemPrice { get; set; }
-		public string ItemDetail { get; set; }
-
+		public string email { get; set; }
+        public string name { get; set; }
+        public int amount { get; set; }
+        public string token { get; set; }
 	}
 }

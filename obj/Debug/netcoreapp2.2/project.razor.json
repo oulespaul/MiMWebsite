@@ -2961,6 +2961,11 @@
   "RootNamespace": "MiMWebsite",
   "Documents": [
     {
+      "FilePath": "Views/RedCat/Index.cshtml",
+      "TargetPath": "Views/RedCat/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Shared/_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views/Shared/_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -2968,6 +2973,16 @@
     {
       "FilePath": "Views/Shared/_CookieConsentPartial.cshtml",
       "TargetPath": "Views/Shared/_CookieConsentPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Item/index.cshtml",
+      "TargetPath": "Views/Item/index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/RedCat/Create.cshtml",
+      "TargetPath": "Views/RedCat/Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2988,6 +3003,11 @@
     {
       "FilePath": "Views/_ViewStart.cshtml",
       "TargetPath": "Views/_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Transaction/Index.cshtml",
+      "TargetPath": "Views/Transaction/Index.cshtml",
       "FileKind": "mvc"
     },
     {
