@@ -39,8 +39,22 @@
         <v-btn color="white" x-large text @click="changePage('/')" class="ma-2">MiM</v-btn>
       </v-toolbar-title>
       <div class="flex-grow-1"></div>
-      <v-btn color="#66fcf1" @click="changePage('/createmim')" class="ma-2 grey--text text--darken-4">CreateMim</v-btn>
-      <v-btn color="#66fcf1" @click="changePage('/dashboard')" class="ma-2 grey--text text--darken-4">Dashboard</v-btn>
+      <v-btn
+        color="#66fcf1"
+        @click="changePage('/createmim')"
+        class="ma-2 grey--text text--darken-4"
+      >CreateMim</v-btn>
+      <v-btn
+        color="#66fcf1"
+        @click="changePage('/dashboard')"
+        class="ma-2 grey--text text--darken-4"
+      >Dashboard</v-btn>
+      <v-btn
+        color="yellow"
+        @click="logout"
+        v-show="user != ''"
+        class="ma-2 grey--text text--darken-4"
+      >Logout</v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -56,21 +70,27 @@ export default {
     source: String
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    user: ""
   }),
   created() {
     this.$vuetify.theme.dark = true;
+    this.user = localStorage.getItem("authToken");
   },
   methods: {
     changePage(page) {
       this.$router.push({ path: page });
+    },
+    logout() {
+      localStorage.setItem("authToken", "");
+      window.location.replace("/");
     }
   }
 };
 </script>
 <style>
 .theme--dark.v-application {
-  background: #191A1B!important;
+  background: #191a1b !important;
   color: #ffffff;
 }
 </style>

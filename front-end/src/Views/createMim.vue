@@ -16,6 +16,9 @@
                   color="grey darken-4"
                   v-model="productName"
                   placeholder="หัวข้อสินค้าที่คุณต้องการลงขาย"
+                  :counter="20"
+                  required
+                  :rules="nameRules"
                   solo
                   light
                 ></v-text-field>
@@ -25,6 +28,9 @@
                     color="grey darken-4"
                     v-model="productPrice"
                     placeholder="ระบุราคาขาย"
+                    @keyup="focusOut1"
+                    @blur="focusOut1"
+                    :rules="priceRules"
                     solo
                     light
                   ></v-text-field>
@@ -73,21 +79,29 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 import swal from "sweetalert2";
 export default {
   data() {
     return {
       logo: require("@/assets/images/mimlogo.png"),
-      productName: '',
-      productPrice:'',
-      productDetail:'',
+      productName: "",
+      productPrice: "",
+      productDetail: "",
       files: [],
-      user: ''
+      user: "",
+      nameRules: [
+        v => !!v || "Name is required",
+        v => v.length <= 20 || "Tel must be less than 20 characters"
+      ],
+      priceRules: [
+        v => !!v || "Price is required",
+        v => v.length <= 5 || "Cannot over thoundsunds",
+      ]
     };
   },
   created() {
-    this.user = localStorage.getItem('authToken')
+    this.user = localStorage.getItem("authToken");
   },
   methods: {
     previewImage: function(event) {
@@ -103,22 +117,42 @@ export default {
         reader.readAsDataURL(input.files[0]);
       }
     },
-    createMim(){
-      let data = {
-        ItemName:this.productName,
-        ItemPrice:this.productPrice,
-        ItemDetail:this.productDetail,
-        ItemImage: this.files,
-        Seller:this.user
+    focusOut1: function(event) {
+      this.productPrice = this.productPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    },
+    createMim() {
+      if(this.files.length == 0 ){
+        swal.fire('กรุณากรอกข้อมูลให้ครบ','กรุณาใส่ราคาและรูปสินค้า','error')
+        return
       }
-      axios.post('https://localhost:5001/transaction/createTrx',data).then((result) => {
-        var mimpin = result.data.result.value.mimpin.toString()
-        swal.fire('สร้าง MiM สำเร็จ',`MIMPIN: ${mimpin}`,"success").then(()=>{
-          this.$router.push({path:'/dashboard'})
+      if(this.productPrice == ""){
+        swal.fire('กรุณากรอกข้อมูลให้ครบ','กรุณาใส่ราคาและรูปสินค้า','error')
+        return
+      }
+      if(this.productName == ""){
+        swal.fire('กรุณากรอกข้อมูลให้ครบ','กรุณาใส่ราคาและรูปสินค้า','error')
+        return
+      }
+      let data = {
+        ItemName: this.productName,
+        ItemPrice: this.productPrice,
+        ItemDetail: this.productDetail,
+        ItemImage: this.files,
+        Seller: this.user
+      };
+      axios
+        .post("https://localhost:5001/transaction/createTrx", data)
+        .then(result => {
+          var mimpin = result.data.result.value.mimpin.toString();
+          swal
+            .fire("สร้าง MiM สำเร็จ", `MIMPIN: ${mimpin}`, "success")
+            .then(() => {
+              this.$router.push({ path: "/dashboard" });
+            });
         })
-      }).catch((err) => {
-        swal.fire('สร้าง MiM ไม่สำเร็จ','','error')
-      });
+        .catch(err => {
+          swal.fire("สร้าง MiM ไม่สำเร็จ", "", "error");
+        });
     }
   }
 };

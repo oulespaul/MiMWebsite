@@ -12,10 +12,10 @@ namespace MiMWebsite.Models
 	{
 		
 		public string ItemName { get; set; }
-		public int ItemPrice { get; set; }
+		public string ItemPrice { get; set; }
 		public string ItemDetail { get; set; }
 		public string[] ItemImage { get; set; }
-		public int Seller { get; set; }
+		public string Seller { get; set; }
 		
 	}
 }

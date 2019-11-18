@@ -10,13 +10,11 @@ namespace MiMWebsite.Models
 {
 	public class UserModel
 	{
-		
 		public int id { get; set; }
 		public string AcNo { get; set; }
 		public string AcName { get; set; }
 		public string Tel { get; set; }
 		public string Password { get; set; }
 		public int Balance { get; set; }
-		
 	}
 }

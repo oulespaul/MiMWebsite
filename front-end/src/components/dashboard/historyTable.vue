@@ -6,7 +6,7 @@
       </template>
       <v-card class="elevation-2 grey--text text--darken-4" color="#45a29e">
         <v-card-title class="headline grey--text text--darken-4">
-          <div class="header">{{n.itemName}}</div>
+          <div class="header">{{n.i.itemName}}</div>
           <v-spacer></v-spacer>
           <v-avatar color="indigo" size="50" tile>
             <v-img :src="n.photo"></v-img>
@@ -14,8 +14,8 @@
         </v-card-title>
         <v-card-text class="grey--text text--darken-4">
           <v-divider></v-divider>
-          <div class="subtitle-1">MIMPIN: {{n.mimpin}}</div>
-          <div class="subtitle-1">ราคา {{n.price}}</div>
+          <div class="subtitle-1">MIMPIN: {{n.h.mimpin}}</div>
+          <div class="subtitle-1">ราคา {{n.h.price}}</div>
         </v-card-text>
       </v-card>
     </v-timeline-item>

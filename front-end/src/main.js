@@ -6,6 +6,9 @@ import index from '@/Views/index.vue';
 import createMim from '@/Views/createMim.vue';
 import dashboard from '@/Views/dashboard.vue';
 import transactionDashboard from '@/Views/transactionDashboard'
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
 
 Vue.config.productionTip = false
 

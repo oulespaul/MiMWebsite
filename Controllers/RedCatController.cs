@@ -81,6 +81,7 @@ namespace MiMWebsite.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody]UserModel user)
         {
+            Console.WriteLine(user);
             var username = user.Tel;
             var password = user.Password;
             var item = db.User.FirstOrDefault(i => i.Tel == username);
@@ -124,5 +125,7 @@ namespace MiMWebsite.Controllers
 
             return NotFound();
         }
+
+        
     }
 }

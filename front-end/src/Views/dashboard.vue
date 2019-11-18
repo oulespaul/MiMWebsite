@@ -59,8 +59,40 @@
         <v-card-text>
           <v-divider class="mx-5"></v-divider>
           <br />
-          <v-text-field color="#0b0c10" light solo rounded prepend-inner-icon="mdi-sigma mdi-spin"></v-text-field>
+          <v-text-field
+            color="#0b0c10"
+            v-model="pin"
+            @keydown.enter="gotoDashboard"
+            light
+            solo
+            rounded
+            prepend-inner-icon="mdi-sigma mdi-spin"
+          ></v-text-field>
         </v-card-text>
+      </v-card>
+      <v-card color="blue" class="mt-5" raised>
+        <div class="text-center">
+          <v-dialog v-model="dialog" width="500">
+            <template v-slot:activator="{ on }">
+              <v-btn width="300" color="red lighten-2" x-large dark v-on="on">สรุปผลการซื้อ-ขาย</v-btn>
+            </template>
+
+            <v-card>
+              <v-card-title class="headline grey darken-4" primary-title>ข้อมูลการซื้อ - ขาย</v-card-title>
+
+              <v-card-text>
+                <graph-component :buy="buy" :sell="sell"></graph-component>
+              </v-card-text>
+
+              <v-divider></v-divider>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="dialog = false">I accept</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </div>
       </v-card>
     </v-flex>
     <v-flex xs6 md6 class="pa-1">
@@ -92,6 +124,7 @@
 <script>
 import historytableComponent from "@/components/dashboard/historyTable";
 import listComponent from "@/components/dashboard/list";
+import graphComponent from '@/components/dashboard/graph'
 import axios from "axios";
 export default {
   data() {
@@ -102,13 +135,18 @@ export default {
       items2: [],
       header1: "ที่กำลังขาย",
       header2: "ที่กำลังซื้อ",
-      history:[]
+      history: [],
+      pin: "",
+      dialog: false,
+      buy:[],
+      sell:[]
     };
   },
   async created() {
     this.username = await localStorage.getItem("authToken");
     this.getUserDetail(this.username);
     this.getTransactionByUserId(this.username);
+    console.log(this.history);
   },
   methods: {
     getUserDetail(userId) {
@@ -123,6 +161,9 @@ export default {
           console.log(err);
         });
     },
+    gotoDashboard() {
+      this.$router.push({ name: "trx", params: { mimpin: this.pin } });
+    },
     getTransactionByUserId(userId) {
       axios
         .get("https://localhost:5001/transaction/getTransactionByUserId", {
@@ -131,6 +172,9 @@ export default {
         .then(result => {
           console.log(result.data);
           this.history = result.data.history;
+          this.buy.push(result.data.history[0].h.price)
+          this.buy.push(result.data.history[2].h.price)
+          this.sell.push(result.data.history[1].h.price)
           this.items1 = result.data.seller;
           this.items2 = result.data.buyer;
         })
@@ -141,7 +185,8 @@ export default {
   },
   components: {
     historytableComponent,
-    listComponent
+    listComponent,
+    graphComponent
   }
 };
 </script>
